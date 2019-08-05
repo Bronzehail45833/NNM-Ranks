@@ -1,6 +1,6 @@
 <?php
 
-namespace pawarenessc/nnm;
+namespace pawarenessc\nnm;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
