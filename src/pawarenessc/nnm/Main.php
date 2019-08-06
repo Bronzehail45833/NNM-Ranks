@@ -93,7 +93,7 @@ class Main extends pluginBase implements Listener{
 		$need_xp = $this->getNeedXp($lv);
 		$now_xp = $this->getXp($player);
 		
-		$player->sendPopup("{$this->getXp($player)} / {$this->getLv($player)}");
+		$player->sendPopup("{$this->getXp($player)} / {$this->getNeedXp($this->getLv($player))}");
 		
 		if($need_xp > $now_xp){
 			$now_xp = $now_xp - $need_xp;
