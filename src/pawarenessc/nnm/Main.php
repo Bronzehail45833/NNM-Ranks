@@ -9,6 +9,11 @@ use pocketmine\utils\Config;
 use pocketmine\Server;
 use pocketmine\Player;
 
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+
 use pocketmine\event\player\PlayerJoinEvent;
 
 use pocketmine\event\block\BlockBreakEvent;
@@ -117,6 +122,16 @@ class Main extends pluginBase implements Listener{
 		$new_lv = $this->getLv($player);
 		
 		if($bool) {$player->addTitle("§6Level Up","§o§e{$old_lv}§r§f->§o§a{$new_lv}",20,20,20); }
+		
+		$pk = new PlaySoundPacket;
+		$pk->soundName = "random.levelup";
+		$pk->x = $player->x;
+		$pk->y = $player->y;
+		$pk->z = $player->z;
+		$pk->volume = 1;
+		$pk->pitch = 1;
+		$player->sendDataPacket($pk);
+		
 		$player->sendMessage("§6レベルアップ！");
 		$player->sendMessage("Lv.§e{$old_lv} §f-> Lv.§a{$new_lv}");
 		$player->sendMessage("次回のレベルアップに必要なEXPは {$this->getNeedXp($new_lv)}exp です。");
