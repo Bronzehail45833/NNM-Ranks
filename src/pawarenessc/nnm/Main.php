@@ -89,7 +89,7 @@ class Main extends pluginBase implements Listener{
 	public function addXp($player, int $ex){
 		$name = $player->getName();
 		$lv = $this->getLv($player);
-		$this->ex->set($name,$this->getXp($player)+$xp);
+		$this->ex->set($name,$this->getXp($player)+$ex);
 		$Need_xp = $this->getNeedXp($lv);
 		$now_xp = $this->getXp($player);
 		
