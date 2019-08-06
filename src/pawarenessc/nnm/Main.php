@@ -51,7 +51,7 @@ class Main extends pluginBase implements Listener{
 		}
 		
 		if(!$this->level->exists($name)){
-			$this->level->set($name, 0);
+			$this->level->set($name, 1);
 		}
 		
 		$lv = $this->getLv($player);
@@ -89,7 +89,7 @@ class Main extends pluginBase implements Listener{
 	public function addXp($player, int $ex){
 		$name = $player->getName();
 		$lv = $this->getLv($player);
-		$this->data->setNested("{$name}.lv", $this->getXp($player)+$xp);
+		$this->->set($name,$this->getXp($player)+$xp);
 		$Need_xp = $this->getNeedXp($lv);
 		$now_xp = $this->getXp($player);
 		
