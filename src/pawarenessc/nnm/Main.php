@@ -123,10 +123,10 @@ class Main extends pluginBase implements Listener{
 		return $this->level->get($player->getName());
 	}
 	
-	public function LevelUp($player,$bool=true){
+	public function LevelUp($player,$up=1,$bool=true){
 		$name = $player->getName();
-		$this->level->set($name, $this->getLv($player)+1);
-		$old_lv = $this->getLv($player)-1;
+		$this->level->set($name, $this->getLv($player)+$up);
+		$old_lv = $this->getLv($player)-$up;
 		$new_lv = $this->getLv($player);
 		
 		if($bool) {$player->addTitle("§6Level Up","§o§e{$old_lv}§r§f->§o§a{$new_lv}",20,20,20); }
