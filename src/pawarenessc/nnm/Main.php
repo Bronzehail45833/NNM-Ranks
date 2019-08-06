@@ -90,7 +90,7 @@ class Main extends pluginBase implements Listener{
 		$name = $player->getName();
 		$this->xp->set($name, $this->xp->get($name)+$ex);
 		$lv = $this->getLv($player);
-		$Need_xp = $this->getNeedXp($lv);
+		$need_xp = $this->getNeedXp($lv);
 		$now_xp = $this->getXp($player);
 		
 		$player->sendPopup("{$this->getXp($player)} / {$this->getLv($player)}");
