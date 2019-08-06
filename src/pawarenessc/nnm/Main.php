@@ -134,6 +134,8 @@ class Main extends pluginBase implements Listener{
 		$name = $player->getName();
 		$this->level->set($name, $this->getLv($player)+$up);
 		$this->level->save();
+		$this->xp->set($name, 0);
+		$this->xp->save();
 		$old_lv = $this->getLv($player)-$up;
 		$new_lv = $this->getLv($player);
 		
