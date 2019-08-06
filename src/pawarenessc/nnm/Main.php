@@ -26,7 +26,8 @@ class Main extends pluginBase implements Listener{
  		$this->getLogger()->info("バージョン:{$this->getDescription()->getVersion()}");
  		$this->getLogger()->info("=========================");
 		
-		$this->data = new Config($this->getDataFolder() ."Datas.yml", Config::YAML);
+		$this->ex = new Config($this->getDataFolder() ."exp.yml", Config::YAML);
+		$this->level = new Config($this->getDataFolder() ."level.yml", Config::YAML);
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
 	
@@ -45,12 +46,12 @@ class Main extends pluginBase implements Listener{
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		
-		if(!$this->data->exists($name)){
-			$this->data->set($name, [
-				"lv" => 0,
-				"exp" => 0
-			]);
-			
+		if(!$this->ex->exists($name)){
+			$this->ex->set($name, 0);
+		}
+		
+		if(!$this->level->exists($name)){
+			$this->level->set($name, 0);
 		}
 		
 		$lv = $this->getLv($player);
@@ -102,11 +103,11 @@ class Main extends pluginBase implements Listener{
 	}
 	
 	public function getXp($player){
-		return $this->data->getAll()[$player->getName()]["exp"];
+		return $this->ex->get($player->getName());
 	}
 	
 	public function getLv($player){
-		return $this->data->getAll()[$player->getName()]["Lv"];
+		return $this->level->get($player->getName());
 	}
 	
 	public function LevelUp($player,$bool=true){
