@@ -1,6 +1,6 @@
 name: NNM-Ranks
 main: pawarenessc\nnm\Main
-version: 0.2
+version: 0.3
 api: [4.0.0,3.0.0,3.5.0]
 author: PawarenessC
 load: POSTWORLD
