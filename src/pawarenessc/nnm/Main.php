@@ -83,6 +83,7 @@ class Main extends pluginBase implements Listener{
 		while($amount > 9){
 			$this->addXp($player,1);
 			$amount = $amount - 10;
+			$player->sendMessage("実行なう");
 		}
 	}
 	
@@ -98,7 +99,7 @@ class Main extends pluginBase implements Listener{
 		if($need_xp < $now_xp){
 			$now_xp = $now_xp - $need_xp;
 			$this->LevelUp($player);
-			if($need_xp > $now_xp){ $this->addXp($player(),0); }
+			if($need_xp > $now_xp){ $this->addXp($player,0); }
 		}
 	}
 	
