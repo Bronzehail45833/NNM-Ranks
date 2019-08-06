@@ -85,9 +85,17 @@ class Main extends pluginBase implements Listener{
 		$player = $event->getPlayer();
 		$amount = $event->getAmount();
 		
+		if($amount > 1000000){
+			$amount = $amount / 10;
+			$amount = floor($amount);
+			$this->addXp($player,$amount);
+		}else{
+			
+		
 		while($amount > 9){
 			$this->addXp($player,1);
 			$amount = $amount - 10;
+		}
 		}
 	}
 	
