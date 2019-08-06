@@ -112,7 +112,7 @@ class Main extends pluginBase implements Listener{
 	
 	public function LevelUp($player,$bool=true){
 		$name = $player->getName();
-		$this->data->setNested("{$name}.lv", $this->getLv($player)+1);
+		$this->level->set($name, $this->getLv($player)+1);
 		$old_lv = $this->getLv($player)-1;
 		$new_lv = $this->getLv($player);
 		
