@@ -42,6 +42,8 @@ class Main extends pluginBase implements Listener{
  		$this->getLogger()->info("製作者: PawarenessC");
  		$this->getLogger()->info("バージョン:{$this->getDescription()->getVersion()}");
  		$this->getLogger()->info("=========================");
+		$this->xp->save();
+		$this->level->save();
 	}
 	
 	/**
@@ -53,10 +55,12 @@ class Main extends pluginBase implements Listener{
 		
 		if(!$this->xp->exists($name)){
 			$this->xp->set($name, 0);
+			$this->xp->save();
 		}
 		
 		if(!$this->level->exists($name)){
 			$this->level->set($name, 1);
+			$this->level->save();
 		}
 		
 		$lv = $this->getLv($player);
@@ -102,6 +106,7 @@ class Main extends pluginBase implements Listener{
 	public function addXp($player, int $ex){
 		$name = $player->getName();
 		$this->xp->set($name, $this->xp->get($name)+$ex);
+		$this->xp->save();
 		$lv = $this->getLv($player);
 		$need_xp = $this->getNeedXp($lv);
 		$now_xp = $this->getXp($player);
@@ -126,6 +131,7 @@ class Main extends pluginBase implements Listener{
 	public function LevelUp($player,$up=1,$bool=true){
 		$name = $player->getName();
 		$this->level->set($name, $this->getLv($player)+$up);
+		$this->level->save();
 		$old_lv = $this->getLv($player)-$up;
 		$new_lv = $this->getLv($player);
 		
