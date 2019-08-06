@@ -83,7 +83,6 @@ class Main extends pluginBase implements Listener{
 		while($amount > 9){
 			$this->addXp($player,1);
 			$amount = $amount - 10;
-			$player->sendMessage("実行なう");
 		}
 	}
 	
@@ -94,7 +93,7 @@ class Main extends pluginBase implements Listener{
 		$need_xp = $this->getNeedXp($lv);
 		$now_xp = $this->getXp($player);
 		
-		$player->sendPopup("{$this->getXp($player)} / {$this->getNeedXp($this->getLv($player))}");
+		//$player->sendPopup("{$this->getXp($player)} / {$this->getNeedXp($this->getLv($player))}");
 		
 		if($need_xp < $now_xp){
 			$now_xp = $now_xp - $need_xp;
@@ -117,7 +116,7 @@ class Main extends pluginBase implements Listener{
 		$old_lv = $this->getLv($player)-1;
 		$new_lv = $this->getLv($player);
 		
-		if($bool) {$player->addTitle("§6Level Up","§o§e{$old_lv}§r§f->§o§a{$new_lv}"); }
+		if($bool) {$player->addTitle("§6Level Up","§o§e{$old_lv}§r§f->§o§a{$new_lv}",20,20,20); }
 		$player->sendMessage("§6レベルアップ！");
 		$player->sendMessage("Lv.§e{$old_lv} §f-> Lv.§a{$new_lv}");
 		$player->sendMessage("次回のレベルアップに必要なEXPは {$this->getNeedXp($new_lv)}exp です。");
