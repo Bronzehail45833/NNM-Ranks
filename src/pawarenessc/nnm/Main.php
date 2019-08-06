@@ -102,11 +102,11 @@ class Main extends pluginBase implements Listener{
 	}
 	
 	public function getXp($player){
-		return $this->data->get($player->getName());
+		return $this->data->getAll()[$player->getName()]["exp"];
 	}
 	
 	public function getLv($player){
-		return $this->data->get($player->getName());
+		return $this->data->getAll()[$player->getName()]["Lv"];
 	}
 	
 	public function LevelUp($player,$bool=true){
