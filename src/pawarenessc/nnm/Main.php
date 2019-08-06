@@ -56,11 +56,13 @@ class Main extends pluginBase implements Listener{
 		if(!$this->xp->exists($name)){
 			$this->xp->set($name, 0);
 			$this->xp->save();
+			$player->sendMessage("アカウントが存在しなかったので作成しました xp");
 		}
 		
 		if(!$this->level->exists($name)){
 			$this->level->set($name, 1);
 			$this->level->save();
+			$player->sendMessage("アカウントが存在しなかったので作成しました Level");
 		}
 		
 		$lv = $this->getLv($player);
