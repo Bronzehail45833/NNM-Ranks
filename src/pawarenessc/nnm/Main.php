@@ -27,6 +27,7 @@ class Main extends pluginBase implements Listener{
  		$this->getLogger()->info("=========================");
 		
 		$this->data = new Config($this->getDataFolder() ."Datas.yml", Config::YAML);
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
 	
 	public function onDisable(){
