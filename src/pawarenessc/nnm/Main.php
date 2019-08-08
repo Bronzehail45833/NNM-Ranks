@@ -62,7 +62,9 @@ class Main extends pluginBase implements Listener{
 			case "myxp":
 			if(!isset($args[0])){
 			$sender->sendMessage("§a{$name} §eLv.{$this->getLv($sender)}".
-					     "EXP: §b{$this->getXp($player)} §f/ §d{$this->getNeedXp($this->getLv($player))}");
+					     "EXP: §b{$this->getXp($player)} §f/ §d{$this->getNeedXp($this->getLv($player))}".
+					     "".
+					     "/myxp r でレベルのランキングが見れます");
 			break;
 			}elseif($args[0] == "r"){
 			form = [
