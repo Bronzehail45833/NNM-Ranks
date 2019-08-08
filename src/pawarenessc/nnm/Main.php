@@ -67,7 +67,7 @@ class Main extends pluginBase implements Listener{
 					     "/myxp r でレベルのランキングが見れます");
 			break;
 			}elseif($args[0] == "r"){
-			form = [
+			$form = [
 			"type" => "form",
 			"title" => "§7ランキング",
 			"content" => "=======§aレベル§6ランキング§f=======",
