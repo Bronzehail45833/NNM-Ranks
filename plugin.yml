@@ -6,5 +6,5 @@ author: PawarenessC
 load: POSTWORLD
 commands:
  nnm:
-  description: "NNM-Ranksのシステムコマンド"
-  usage: "/nnm"
+  description: "ステータスを確認する"
+  usage: "/myxp"
