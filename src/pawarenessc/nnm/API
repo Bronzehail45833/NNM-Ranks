@@ -1,0 +1,8 @@
+<?php
+
+namespace pawarenessc\nnm;
+
+use pawarenessc\nnm\Main;
+use pocketmine\Player;
+
+class API {}
