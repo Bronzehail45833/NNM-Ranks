@@ -24,6 +24,16 @@ use metowa1227\moneysystem\event\money\MoneyIncreaseEvent;
 
 class Main extends pluginBase implements Listener{
 	
+	private static $instance;
+	
+	public static function getInstance(){
+		return self::$instance;
+	}
+	
+	public function onLoad(){
+		self::$instance = $this;
+	}
+	
 	public function onEnable(){
 		$this->getLogger()->info("=========================");
  		$this->getLogger()->info("NNM-Ranksを読み込みました");
