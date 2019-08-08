@@ -8,6 +8,6 @@ use pocketmine\Player;
 class API {
 
 	public static function getInstance(){
-		return Main::$instance;
+		return Main::getInstance;
 	}
 }
