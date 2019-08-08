@@ -24,6 +24,16 @@ use metowa1227\moneysystem\event\money\MoneyIncreaseEvent;
 
 class Main extends pluginBase implements Listener{
 	
+	private static $instance;
+	
+	public static function getInstance(){
+		return self::$instance;
+	}
+	
+	public function onLoad(){
+		self::$instance = $this;
+	}
+	
 	public function onEnable(){
 		$this->getLogger()->info("=========================");
  		$this->getLogger()->info("NNM-Ranksを読み込みました");
@@ -46,6 +56,54 @@ class Main extends pluginBase implements Listener{
 		$this->level->save();
 	}
 	
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
+		$name = $sender->getName();
+		switch($label){
+			case "myxp":
+			if(!isset($args[0])){
+			$sender->sendMessage("§a{$name} §eLv.{$this->getLv($sender)}".
+					     "EXP: §b{$this->getXp($player)} §f/ §d{$this->getNeedXp($this->getLv($player))}");
+			break;
+			}elseif($args[0] == "r"){
+			form = [
+			"type" => "form",
+			"title" => "§7ランキング",
+			"content" => "=======§aレベル§6ランキング§f=======",
+			"buttons" => array(array("text" => "戻る","image" => array("type" => "path","data" => "")); ,
+			];
+			$count = 1; // PJZ9nさんのコード使わせてもらいました、ありがとうございます！
+			$all_data = $this->level->getAll();
+			arsort($all_data);
+			foreach ($all_data as $key => $value){
+				$color = "§l§f";
+				switch($count){
+				case 1:
+				$color = "§l§e";
+				break;
+				case 2:
+				$color = "§l§7";
+				break;
+				case 3:
+				$color = "§l§6";
+				break;
+				}
+				if($key == $name){
+					$form["content"] .= "\n{$color}{$count}§r. §l§a{$key}§r: Lv.§b{$value}";
+					$count++;
+				}else{
+					$form["content"] .= "\n{$color}{$count}§r. §l§f{$key}§r: Lv.§b{$value}";
+					$count++;
+				}
+			$this->createWindow($player, $form, 472739);
+			break;
+			}else{
+			$sender->sendMessage("ステータスを表示するなら /myxp".
+					     "レベルランキングを表示するなら /myxp r");
+			break;
+			}
+			return true;
+	}
+	
 	/**
  	* @priority MONITOR
 	*/
@@ -56,13 +114,13 @@ class Main extends pluginBase implements Listener{
 		if(!$this->xp->exists($name)){
 			$this->xp->set($name, 0);
 			$this->xp->save();
-			$player->sendMessage("アカウントが存在しなかったので作成しました xp");
+			//$player->sendMessage("アカウントが存在しなかったので作成しました xp");
 		}
 		
 		if(!$this->level->exists($name)){
 			$this->level->set($name, 1);
 			$this->level->save();
-			$player->sendMessage("アカウントが存在しなかったので作成しました Level");
+			//$player->sendMessage("アカウントが存在しなかったので作成しました Level");
 		}
 		
 		$lv = $this->getLv($player);
@@ -160,4 +218,14 @@ class Main extends pluginBase implements Listener{
 	public function getNeedXp($lv){
 		return $lv*500;
 	}
+					   
+	public function createWindow(Player $player, $data, int $id){
+		$pk = new ModalFormRequestPacket();
+		$pk->formId = $id;
+		$pk->formData = json_encode($data, JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_UNESCAPED_UNICODE);
+		$player->dataPacket($pk);
+	}
+	
+	/*public function gNNMForm($player){}*/
+	/*public function aNNMForm($player){}*/
 }
